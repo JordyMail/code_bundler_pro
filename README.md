@@ -48,3 +48,76 @@ pip install -r requirements.txt
 
 # 3. Jalankan aplikasi
 python src/code_bundler_pro.py
+```
+
+## How to Use?
+
+### 1. Open the Application
+<p align="center">
+  <img src="docs/screenshots/main_window.jpeg" width="500"/>
+</p>
+
+Launch the application to access the main interface.
+
+---
+
+### 2. Select the File
+<p align="center">
+  <img src="docs/screenshots/select_file.jpeg" width="500"/>
+</p>
+
+Click the file selection button and choose the file you want to process.
+
+---
+
+### 3. Add the File
+<p align="center">
+  <img src="docs/screenshots/file_added.jpeg" width="500"/>
+</p>
+
+After selecting the file, it will appear in the file list.
+
+---
+
+### 4. Processing the File
+<p align="center">
+  <img src="docs/screenshots/processing.jpeg" width="500"/>
+</p>
+
+The application will start processing the selected file.
+
+---
+
+### 5. Confirmation Message
+<p align="center">
+  <img src="docs/screenshots/confirmation.jpeg" width="500"/>
+</p>
+
+A confirmation popup will appear when the process is completed successfully.
+
+---
+
+### 6. Open File Location
+<p align="center">
+  <img src="docs/screenshots/path_direction.jpeg" width="500"/>
+</p>
+
+The application will provide the output file path.
+
+---
+
+### 7. View Output Directory
+<p align="center">
+  <img src="docs/screenshots/file_location.jpeg" width="500"/>
+</p>
+
+Open the output folder to view the processed files.
+
+---
+
+### 8. Result File
+<p align="center">
+  <img src="docs/screenshots/file.jpeg" width="500"/>
+</p>
+
+The processed result file is now ready to use.
