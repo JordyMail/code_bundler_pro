@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-MIT-red.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)]()
 
-![Main Window](docs/screenshots/main_window.png)
+![Main Window](docs/screenshots/main_window.jpeg)
 
 ## **Permasalahan yang Diselesaikan**
 
