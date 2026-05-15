@@ -1,6 +1,6 @@
 # Code Bundler Pro
 
-**Satu klik untuk menggabungkan semua kode project Anda ke dalam 1 file, siap copy-paste ke ChatGPT, Claude, atau AI apapun!**
+**Satu klik untuk menggabungkan semua kode project Anda ke dalam 1 file**
 
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://python.org)
 [![PyQt5](https://img.shields.io/badge/PyQt5-5.15-green.svg)](https://riverbankcomputing.com/software/pyqt/)
@@ -11,9 +11,9 @@
 
 ## **Permasalahan yang Diselesaikan**
 
-> *"Saya selalu kesulitan copy-paste file project satu per satu ke chat bot AI. Jika file terlalu banyak, itu akan memakan waktu berjam-jam!"*
+> *"kesulitan copy-paste ataupun mengakses file project satu per satu. Jika file terlalu banyak, itu akan memakan waktu berjam-jam!"*
 
-**Solusi:** AI Code Bundler Pro membaca SEMUA file kode Anda (Python, JavaScript, HTML, CSS, JSON, dll), lalu menggabungkannya ke **1 file .txt** yang rapi dan siap pakai.
+**Solusi:** Code Bundler Pro membaca SEMUA file kode Anda (Python, JavaScript, HTML, CSS, JSON, dll), lalu menggabungkannya ke **1 file .txt** yang rapi dan siap pakai.
 
 ---
 
