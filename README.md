@@ -1,4 +1,4 @@
-# 🤖 AI Code Bundler Pro
+# Code Bundler Pro
 
 **Satu klik untuk menggabungkan semua kode project Anda ke dalam 1 file, siap copy-paste ke ChatGPT, Claude, atau AI apapun!**
 
@@ -9,7 +9,7 @@
 
 ![Main Window](docs/screenshots/main_window.png)
 
-## 📌 **Permasalahan yang Diselesaikan**
+## **Permasalahan yang Diselesaikan**
 
 > *"Saya selalu kesulitan copy-paste file project satu per satu ke chat bot AI. Jika file terlalu banyak, itu akan memakan waktu berjam-jam!"*
 
@@ -17,24 +17,24 @@
 
 ---
 
-## ✨ **Fitur Unggulan**
+## **Fitur Unggulan**
 
 | Fitur | Status | Deskripsi |
 |-------|--------|------------|
-| 🖱️ **Drag & Drop** | ✅ | Cukup drag folder project ke aplikasi |
-| 🎨 **GUI Modern** | ✅ | Antarmuka grafis yang mudah digunakan |
-| 📊 **Token Counter** | ✅ | Estimasi token untuk GPT-4/ChatGPT (akurat!) |
-| 🚫 **Auto Exclude** | ✅ | Otomatis abaikan `node_modules`, `.git`, `__pycache__`, dll |
-| 💾 **Save Preferences** | ✅ | Pengaturan tersimpan otomatis |
-| ⚡ **Multi-threading** | ✅ | Scan file tanpa freeze aplikasi |
-| 🎯 **Pilih File Manual** | ✅ | Centang file mana saja yang ingin dibundle |
-| 📏 **Size Limit** | ✅ | Abaikan file > 5MB (bisa diatur) |
-| 🔧 **Custom Extensions** | ✅ | Tambah ekstensi file apapun |
-| 🖥️ **Cross-platform** | ✅ | Windows, macOS, Linux |
+| **Drag & Drop** | ✅ | Cukup drag folder project ke aplikasi |
+| **GUI Modern** | ✅ | Antarmuka grafis yang mudah digunakan |
+| **Token Counter** | ✅ | Estimasi token untuk GPT-4/ChatGPT (akurat!) |
+| **Auto Exclude** | ✅ | Otomatis abaikan `node_modules`, `.git`, `__pycache__`, dll |
+| **Save Preferences** | ✅ | Pengaturan tersimpan otomatis |
+| **Multi-threading** | ✅ | Scan file tanpa freeze aplikasi |
+| **Pilih File Manual** | ✅ | Centang file mana saja yang ingin dibundle |
+| **Size Limit** | ✅ | Abaikan file > 5MB (bisa diatur) |
+| **Custom Extensions** | ✅ | Tambah ekstensi file apapun |
+| **Cross-platform** | ✅ | Windows, macOS, Linux |
 
 ---
 
-## 🚀 **Quick Start**
+## **Quick Start**
 
 ### **Instalasi (3 Langkah)**
 
