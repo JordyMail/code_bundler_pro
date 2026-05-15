@@ -1,0 +1,15 @@
+# Core GUI Framework
+PyQt5>=5.15.0
+
+# OpenAI Token Counter (untuk estimasi token akurat)
+tiktoken>=0.5.0
+
+# Validasi path file
+pathvalidate>=3.0.0
+
+# Optional: Untuk packaging jadi .exe (development only)
+pyinstaller>=6.0.0
+
+# Optional: Untuk progress bar yang lebih bagus (already included in PyQt5)
+# PyQt5-sip>=12.11.0
+

@@ -1,0 +1,282 @@
+# ======================================================================
+# AI CODE BUNDLE
+# Generated: 2026-05-15 14:30:22
+# Project: sample_ecommerce_app
+# Total files: 8
+# ======================================================================
+
+===== FILE 1/8: app.py =====
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from datetime import datetime
+import os
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your-secret-key-here'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+
+# Models
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_admin = db.Column(db.Boolean, default=False)
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    description = db.Column(db.Text)
+    stock = db.Column(db.Integer, default=0)
+    image_url = db.Column(db.String(200))
+
+@app.route('/')
+def home():
+    products = Product.query.limit(12).all()
+    return render_template('home.html', products=products)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        hashed_password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+        user = User(
+            username=request.form['username'],
+            email=request.form['email'],
+            password=hashed_password
+        )
+        db.session.add(user)
+        db.session.commit()
+        flash('Registration successful! Please login.', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
+
+
+===== FILE 2/8: templates/home.html =====
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">MyStore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if session.user_id %}
+                        <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Welcome to MyStore</h1>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{{ product.image_url or 'https://via.placeholder.com/300' }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">${{ "%.2f"|format(product.price) }}</p>
+                        <a href="/product/{{ product.id }}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+===== FILE 3/8: static/css/style.css =====
+/* Main Stylesheet for E-Commerce App */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 25px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Product Detail Page */
+.product-detail {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.product-price {
+    font-size: 2rem;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.quantity-input {
+    width: 80px;
+    text-align: center;
+}
+
+/* Cart Page */
+.cart-item {
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px 0;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 150px;
+    }
+    
+    .product-price {
+        font-size: 1.5rem;
+    }
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+
+===== FILE 4/8: config.json =====
+{
+  "app_name": "MyEcommerceStore",
+  "version": "1.0.0",
+  "debug": true,
+  "database": {
+    "type": "sqlite",
+    "path": "ecommerce.db"
+  },
+  "upload_settings": {
+    "max_file_size_mb": 5,
+    "allowed_extensions": [".jpg", ".png", ".jpeg", ".gif"],
+    "upload_folder": "static/uploads"
+  },
+  "pagination": {
+    "products_per_page": 12,
+    "comments_per_page": 20
+  },
+  "payment_gateway": {
+    "provider": "stripe",
+    "api_key": "pk_test_your_test_key_here"
+  },
+  "email_config": {
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "use_tls": true
+  }
+}
+
+
+===== FILE 5/8: requirements.txt =====
+flask==2.3.0
+flask-sqlalchemy==3.0.5
+flask-bcrypt==1.0.1
+flask-login==0.6.2
+pillow==10.0.0
+stripe==6.0.0
+python-dotenv==1.0.0
+
+
+===== FILE 6/8: README.md =====
+# E-Commerce Application
+
+A full-featured e-commerce web application built with Flask.
+
+## Features
+- User authentication (register/login/logout)
+- Product catalog with search and filtering
+- Shopping cart functionality
+- Order management
+- Admin panel for product management
+- Responsive design with Bootstrap
+
